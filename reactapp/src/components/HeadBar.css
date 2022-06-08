@@ -1,0 +1,10 @@
+.headbar {
+    height: 100px;
+    background-color: black;
+    font-family: 'Roboto', sans-serif;
+    font-size: xx-large;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

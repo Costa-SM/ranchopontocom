@@ -1,9 +1,12 @@
 import React from 'react';
+import HeadBar from './HeadBar';
+import './App.css'
 
 class App extends React.Component {
     render() {
         return (
-            <div>
+            <div className="app">
+                <HeadBar/>
                 Hello World!
             </div>
         );
