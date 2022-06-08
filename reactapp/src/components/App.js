@@ -1,6 +1,7 @@
 import React from 'react';
-import NavBar from './NavBar';
 import HeadBar from './HeadBar';
+import NavBar from './NavBar';
+import MainContent from './MainContent';
 import './App.css'
 
 class App extends React.Component {
@@ -8,7 +9,8 @@ class App extends React.Component {
         return (
             <div className="app">
                 <HeadBar />
-                <NavBar />
+                <NavBar /> 
+                <MainContent/>
             </div>
         );
     }
