@@ -7,7 +7,7 @@ import './App.css';
 class App extends React.Component {
     render() {
         return (
-            <div className="app">
+            <div className="main_page">                    
                 <HeadBar />
                 <NavBar /> 
                 <MainContent/>
@@ -17,3 +17,4 @@ class App extends React.Component {
 }
 
 export default App;
+

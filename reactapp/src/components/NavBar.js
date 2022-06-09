@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import NavItem from './NavItem';
 import './NavBar.css';
 
@@ -13,8 +14,12 @@ class NavBar extends React.Component {
                     <NavItem itemName="Notícias"/>
                 </div>
                 <div className="login_section">
-                    <NavItem itemName="Entrar"/>
-                    <NavItem itemName="Cadastrar"/>
+                    <Link to='/login'>
+                        <NavItem itemName="Entrar"/>
+                    </Link>
+                    <Link to='/signup'>
+                        <NavItem itemName="Cadastrar"/>
+                    </Link>
                 </div>
             </div>
         );
