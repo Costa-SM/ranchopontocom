@@ -2,13 +2,13 @@ import React from 'react';
 import HeadBar from './HeadBar';
 import NavBar from './NavBar';
 import MainContent from './MainContent';
+import './App.css';
 import Footer from './Footer';
-import './App.css'
 
 class App extends React.Component {
     render() {
         return (
-            <div className="app">
+            <div className="main_page">                    
                 <HeadBar />
                 <NavBar /> 
                 <MainContent/>
@@ -19,3 +19,4 @@ class App extends React.Component {
 }
 
 export default App;
+
