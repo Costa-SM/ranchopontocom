@@ -2,6 +2,7 @@ import React from 'react';
 import HeadBar from './HeadBar';
 import NavBar from './NavBar';
 import MainContent from './MainContent';
+import Footer from './Footer';
 import './App.css'
 
 class App extends React.Component {
@@ -11,6 +12,7 @@ class App extends React.Component {
                 <HeadBar />
                 <NavBar /> 
                 <MainContent/>
+                <Footer/>
             </div>
         );
     }
