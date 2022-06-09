@@ -2,6 +2,8 @@
     font-size: large;
     font-weight: 500;
     color: rgb(117,117,117);
+    display: inline-block;
+    text-decoration: none;
     transition: all ease 0.2s;
 }
 
