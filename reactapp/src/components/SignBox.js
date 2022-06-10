@@ -19,6 +19,19 @@ class SignBox extends React.Component {
         else {
             this.setState({ text: 'Unable to login' });
         }
+
+        const myData = {
+            email: this.state.email,
+            password: this.state.password
+        };
+      
+        await fetch('http://127.0.0.1:8000/core/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(myData)
+        });
     }
 
     render() {
