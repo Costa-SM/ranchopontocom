@@ -4,11 +4,34 @@ import './SignBox.css';
 class SignBox extends React.Component {    
     constructor(props) {
         super(props);
-        this.state = { email: '', password: ''};
+        this.state = { email: '', password: '', text: ''};
     }
 
-    onFormSubmit = (event) => {
+    onFormSubmit = async (event) => {
         event.preventDefault();
+
+        const response = await fetch('http://127.0.0.1:8000/core');
+        const json = await response.json();
+
+        if (this.state.email === json.email && this.state.password === json.password) {
+            this.setState({ text: 'You are logged in' });
+        }
+        else {
+            this.setState({ text: 'Unable to login' });
+        }
+
+        const myData = {
+            email: this.state.email,
+            password: this.state.password
+        };
+      
+        await fetch('http://127.0.0.1:8000/core/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(myData)
+        });
     }
 
     render() {
@@ -35,6 +58,7 @@ class SignBox extends React.Component {
                         </button>
                     </div>
                 </form>
+                <p>{this.state.text}</p>
             </div>
         );
     }
