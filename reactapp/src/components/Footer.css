@@ -30,6 +30,7 @@
 }
 
 .link:hover {
+    cursor: pointer;
     color: gray;
     transition: 200ms ease-in;
 }

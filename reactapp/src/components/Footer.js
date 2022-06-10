@@ -8,8 +8,10 @@ class Footer extends React.Component {
                 <div className="wrapper">
                     <div className="row">
                         <div className="column">
-                            <div className="title"> Jogue Nosso Jogo </div>
-                            <div className="link" href="#"> Link pro jogo </div>
+                            <div className="title"> Desenvolvedores </div>
+                            <a className="link" target="_blank" href="https://github.com/Costa-SM"> Arthur Costa </a>
+                            <a className="link" target="_blank" href="https://github.com/edmsimp"> Eduardo Simplício </a>
+                            <a className="link" target="_blank" href="https://github.com/matheus-creator"> Matheus Ramos </a>
                         </div>
                         <div className="column">
                             <div className="title"> Localização </div>
