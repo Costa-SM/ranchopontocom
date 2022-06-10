@@ -11,7 +11,7 @@ class NavBar extends React.Component {
                 <div className="menu_section">
                     <NavItem itemName="Cardápio Semanal"/>
                     <NavItem itemName="Votação Semanal"/>
-                    <NavItem itemName="Notícias"/>
+                    <NavItem itemName="Feedback"/>
                 </div>
                 <div className="login_section">
                     <Link to='/login'>
