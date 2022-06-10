@@ -1,5 +1,6 @@
 import React from 'react';
 import SignBox from './SignBox';
+import LoginText from './LoginText';
 import './SignUp.css';
 
 class SignUp extends React.Component {
@@ -7,6 +8,7 @@ class SignUp extends React.Component {
         return (
             <div className="sign_up">                    
                 <SignBox mainText="Cadastrar"/>
+                <LoginText />
             </div>
         );
     }
