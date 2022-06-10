@@ -9,9 +9,9 @@ class Footer extends React.Component {
                     <div className="row">
                         <div className="column">
                             <div className="title"> Desenvolvedores </div>
-                            <a className="link" target="_blank" href="https://github.com/Costa-SM"> Arthur Costa </a>
-                            <a className="link" target="_blank" href="https://github.com/edmsimp"> Eduardo Simplício </a>
-                            <a className="link" target="_blank" href="https://github.com/matheus-creator"> Matheus Ramos </a>
+                            <a className="link" target="_blank" href="https://github.com/Costa-SM" rel="noreferrer"> Arthur Costa </a>
+                            <a className="link" target="_blank" href="https://github.com/edmsimp" rel="noreferrer"> Eduardo Simplício </a>
+                            <a className="link" target="_blank" href="https://github.com/matheus-creator" rel="noreferrer"> Matheus Ramos </a>
                         </div>
                         <div className="column">
                             <div className="title"> Localização </div>
