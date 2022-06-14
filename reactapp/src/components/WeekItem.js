@@ -13,21 +13,22 @@ class WeekItem extends React.Component {
         /* background-color is value of props.color */
         background-color: white;
         color: white;
-        font-weight: 500;
+        font-size: 1.5em;
         padding: 10px;
-        margin: auto;
-        margin-bottom: 20px;
-        margin-top: 20px;
-        border-radius: 8px;
         box-shadow: 0 2px 5px rgb(0 0 0 / 15%);
-        width: 65vw;
-        max-width: 880px;
-        height: 100px;
+        width: 100%;
+        max-width: 100%;
+        height: 200px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         background: url(${props => props.url}) center;
         background-size: cover;
+
+        &:hover{
+            transition-duration: 0.2s;
+            filter: brightness(80%);
+        }
     `;
         return (
             <Item url={this.props.url}>
