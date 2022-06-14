@@ -1,0 +1,5 @@
+Django==4.0.4
+pymongo==4.1.1
+dnspython==2.2.1
+djangorestframework==3.13.1
+django-cors-headers==3.13.0
