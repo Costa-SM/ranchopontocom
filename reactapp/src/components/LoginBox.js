@@ -1,11 +1,12 @@
 import React from 'react';
 import axios from 'axios';
-import './SignBox.css';
+import './LoginBox.css';
 import bcryptjs from 'bcryptjs';
-class SignBox extends React.Component {    
+class LoginBox extends React.Component {    
+    
     constructor(props) {
         super(props);
-        this.state = {name: '', email: '', password: '', text: ''};
+        this.state = {email: '', password: ''};
     }
 
     isPresent = (email, json) => {
@@ -17,44 +18,50 @@ class SignBox extends React.Component {
         return false;
     }
 
-    postData = async () => {
-       bcryptjs.hash(this.state.password, 10, (err, hash) => {
-            if(err) throw Error("Could not hash password.") 
+    validate = async (email, password, json) => {
+        let jsonIndex = this.isPresent(email, json);
+        
+        console.log()
 
-            axios.post('http://127.0.0.1:8000/api/users/', {id: 'a', name: this.state.name, email: this.state.email, password: hash});
-        });
+        if(jsonIndex){
+            const response = await bcryptjs.compare(password, json[jsonIndex].password);
+            console.log(response);
+            return response;
+        }
+        
+        return false;
     }
 
-    onFormSubmit = async (event) => {
-        event.preventDefault();
-        this.setState({ text: ''});
+    fetchData = async () => {
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/users');
+            const json = await response.json();
+            
+            const validCredentials = await this.validate(this.state.email, this.state.password, json);
 
-        const response = await fetch('http://127.0.0.1:8000/api/users');
-        const json = await response.json();
-
-        if(this.isPresent(this.state.email, json)){
-            this.setState({ text: 'User already registered'});
-            return;
+            if (validCredentials) {
+                this.setState({ text: 'You are logged in' });
+            }
+            else {
+                this.setState({ text: 'Unable to login' });
+            }
         }
+        catch(e) {
+            console.log(e);
+        }
+    }
 
-        this.postData();
-        this.setState({ text: 'You have been registered!'});
+    onFormSubmit = (event) => {
+        event.preventDefault();
+        this.fetchData();
     }
 
     render() {
         return(
-            <div className='sign_box'>
+            <div className='login_box'>
                 <h1>{this.props.mainText}</h1>
                 <form onSubmit={this.onFormSubmit}>
                     <div className='forms'>
-                        <input
-                            id='name'
-                            type='text'
-                            placeholder='Nome'
-                            value={this.state.name}
-                            onChange={e => this.setState({ name: e.target.value })}
-                        />
-
                         <input
                             id='email'
                             type='text'
@@ -80,4 +87,4 @@ class SignBox extends React.Component {
     }
 }
 
-export default SignBox;
+export default LoginBox;
