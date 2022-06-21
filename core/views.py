@@ -1,10 +1,9 @@
-from django.http import HttpResponse
-from django.http import JsonResponse
-from utils import collection
+from django.shortcuts import render
+from .serializers import UserSerializer
+from rest_framework import viewsets
+from .models import User
 
-obj = {"email" : "matheus@gmail.com", "password" : "1234"}
-#collection.insert_one({"name" : "matheus", "password" : "1234"})
-
-def page(request):
-    #obj = collection.find({"name"})
-    return JsonResponse(obj)
+# Create your views here.
+class UserView(viewsets.ModelViewSet):
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
