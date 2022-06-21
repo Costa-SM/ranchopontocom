@@ -1,8 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import './SignBox.css';
-import bcrypt from 'bcrypt';
-
+import bcryptjs from 'bcryptjs';
 class SignBox extends React.Component {    
     constructor(props) {
         super(props);
@@ -12,12 +11,9 @@ class SignBox extends React.Component {
     validate = async (email, password, json) => {
         for (let i = 0; i < json.length; i++) {
             if (email === json[i].email) {
-                await bcrypt.compare(password, json[i].password, function(err, result) {
-                    if (err) {
-                        throw Error('Unable to compare');
-                    }
-                    return result;
-                });
+                const response = await bcryptjs.compare(password, json[i].password);
+                console.log(response);
+                return response;
             }
         }
         return false;
@@ -28,7 +24,7 @@ class SignBox extends React.Component {
             const response = await fetch('http://127.0.0.1:8000/api/users');
             const json = await response.json();
             
-            const validCredentials = this.validate(this.state.email, this.state.password, json);
+            const validCredentials = await this.validate(this.state.email, this.state.password, json);
 
             if (validCredentials) {
                 this.setState({ text: 'You are logged in' });
@@ -43,27 +39,10 @@ class SignBox extends React.Component {
     }
 
     postData = async () => {
-        let password;
-
-        await bcrypt.genSalt(10, function(err, salt) {
-            bcrypt.hash(this.state.password, salt, function(err, hash) {
-                if (err) {
-                    throw Error('Unable to hash');
-                }
-                password = hash;
-            });
+        
+        bcryptjs.hash(this.state.password, 10, (err, hash) => {
+            axios.post('http://127.0.0.1:8000/api/users/', {id: 'a', name: 'b', email: this.state.email, password: hash});
         });
-
-        const myData = {
-            email: this.state.email,
-            password
-        };
-
-        try {
-            await axios.post('http://127.0.0.1:8000/api/users/', myData);
-        } catch(e) {
-            console.log(e);
-        }
     }
 
     onFormSubmit = (event) => {
