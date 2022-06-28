@@ -2,6 +2,7 @@
 
 # pycache folder
 */__pycache__
+__pycache__
 
 # migrations pycache folder
 core/migations/__pycache__
