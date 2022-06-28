@@ -20,7 +20,7 @@ from core import views
 
 router = routers.DefaultRouter()
 router.register('users', views.UserView, 'user')
-router.register('menus', views.MenuView, 'menu')
+router.register('menus', views.MenusView, 'menus')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
