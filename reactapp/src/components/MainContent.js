@@ -41,6 +41,7 @@ class MainContent extends React.Component {
             <div className="main_content">
                 <Bounce left>
                     <WeekItem weekDay={this.state.weekDay[0]} monthDay={this.state.monthDay[0]} breakfast={this.state.breakfast[0]} lunch={this.state.lunch[0]} dinner={this.state.dinner[0]} url={this.state.url[0]}/>
+                    <WeekItem weekDay={this.state.weekDay[0]} monthDay={this.state.monthDay[0]} breakfast={this.state.breakfast[0]} lunch={this.state.lunch[0]} dinner={this.state.dinner[0]} url={this.state.url[1]}/>
                 </Bounce>                
             </div>
         );
