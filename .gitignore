@@ -1,0 +1,7 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# pycache folder
+*/__pycache__
+
+# migrations pycache folder
+core/migations/__pycache__
