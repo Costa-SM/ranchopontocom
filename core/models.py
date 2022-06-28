@@ -19,3 +19,12 @@ class Menu(models.Model):
 
     def __str__(self):
         return self.week_day
+
+class Vote(models.Model):
+    item_name = models.CharField(max_length=50)
+    url = models.CharField(max_length=200)
+    vote_quantity = models.IntegerField()
+    vote_users = models.JSONField()
+
+    def __str__(self):
+        return self.item_name
