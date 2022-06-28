@@ -6,7 +6,7 @@ class LoginBox extends React.Component {
     
     constructor(props) {
         super(props);
-        this.state = {email: '', password: ''};
+        this.state = {email: '', password: '', outline: 'solid 1px gray', text: '\xa0'};
     }
 
     isPresent = (email, json) => {
@@ -33,6 +33,8 @@ class LoginBox extends React.Component {
     }
 
     fetchData = async () => {
+        this.setState({ outline: 'solid 1px gray'});
+
         try {
             const response = await fetch('http://127.0.0.1:8000/api/users');
             const json = await response.json();
@@ -40,10 +42,10 @@ class LoginBox extends React.Component {
             const validCredentials = await this.validate(this.state.email, this.state.password, json);
 
             if (validCredentials) {
-                this.setState({ text: 'You are logged in' });
+                this.setState({ text: 'Logging in...' });
             }
             else {
-                this.setState({ text: 'Unable to login' });
+                this.setState({ text: '\xa0', outline: 'solid 1px red'});
             }
         }
         catch(e) {
@@ -67,21 +69,25 @@ class LoginBox extends React.Component {
                             type='text'
                             placeholder='Email'
                             value={this.state.email}
-                            onChange={e => this.setState({ email: e.target.value })}
+                            onChange={e => this.setState({ email: e.target.value})}
+                            style={{outline: this.state.outline}}
                         />
+                        
 
                         <input
                             id='password'
                             type='password'
                             placeholder='Senha'
                             onChange={e => this.setState({ password: e.target.value })}
+                            style={{outline: this.state.outline}}
                         />
                         <button type='submit'>
                             {this.props.mainText}
                         </button>
+
+                        <small style={{color: 'gray'}}>{this.state.text}</small>
                     </div>
                 </form>
-                <p>{this.state.text}</p>
             </div>
         );
     }
