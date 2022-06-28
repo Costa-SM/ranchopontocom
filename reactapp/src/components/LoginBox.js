@@ -43,6 +43,7 @@ class LoginBox extends React.Component {
 
             if (validCredentials) {
                 this.setState({ text: 'Logging in...' });
+                window.location.href = '/'
             }
             else {
                 this.setState({ text: '\xa0', outline: 'solid 1px red'});

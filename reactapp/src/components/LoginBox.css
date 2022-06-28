@@ -4,6 +4,7 @@
     padding: 24px;
     width: 304px;
     height: 370px;
+    
 }
 
 h1 {
@@ -31,11 +32,6 @@ input {
     font-size: 19px;
     color: rgba(0,0,0,0.9);
     transition: all ease 0.3s;
-}
-
-input:focus {
-    outline: none !important;
-    box-shadow: 0 0 0 1px #0a66c2;
 }
 
 button {
