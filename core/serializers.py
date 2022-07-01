@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Menu
+from .models import User, Menu, Feedback
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -9,4 +9,9 @@ class UserSerializer(serializers.ModelSerializer):
 class MenuSerializer(serializers.ModelSerializer):
     class Meta:
         model = Menu
-        fields = ('week_day', 'month_day', 'breakfast', 'lunch', 'dinner', 'url')
+        fields = ('id', 'week_day', 'month_day', 'breakfast', 'lunch', 'dinner', 'url')
+
+class FeedbackSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Feedback
+        fields = ('id', 'message', 'date')
