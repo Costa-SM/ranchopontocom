@@ -2,6 +2,7 @@ import React from 'react';
 import WeekItem from './WeekItem';
 import Bounce from 'react-reveal/Bounce';
 import './MainContent.css';
+import urls from '../url.json'
 
 class MainContent extends React.Component {
 
@@ -11,13 +12,21 @@ class MainContent extends React.Component {
     }
 
     fetchData = async () => {
+
+      //  let myUrls = JSON.parse('./src/urls.json');
+
         try {
             const response = await fetch('http://127.0.0.1:8000/api/menus');
             const json = await response.json();
             
             let weekDayAux = [];
             let monthDayAux = [];
-            let breakfastAux = [];
+            let breakfastMainAux = [];
+            let breakfast1Aux = [];
+            let breakfast2Aux = [];
+            let breakfast3Aux = [];
+            let breakfast4Aux = [];
+            let breakfast5Aux = [];
             let lunchAux = [];
             let dinnerAux = [];
             let urlAux = [];
@@ -25,16 +34,17 @@ class MainContent extends React.Component {
             for (let i = 0; i < json.length; i++) {
                 weekDayAux = weekDayAux.concat(json[i].week_day);
                 monthDayAux = monthDayAux.concat(json[i].month_day);
-                breakfastAux = breakfastAux.concat(json[i].breakfast);
-                lunchAux = lunchAux.concat(json[i].lunch);
+                breakfastMainAux = breakfastMainAux.concat(json[i].breakfast_main);
+                lunchAux = lunchAux.concat(json[i].lunch_main);
                 dinnerAux = dinnerAux.concat(json[i].dinner);
-                urlAux = urlAux.concat(json[i].url);
+                urlAux = urlAux.concat(urls[json[i].lunch_main]);
+                console.log(lunchAux)
             }
 
             this.setState({
                 weekDay: weekDayAux,
                 monthDay: monthDayAux,
-                breakfast: breakfastAux,
+                breakfast: breakfastMainAux,
                 lunch: lunchAux,
                 dinner: dinnerAux,
                 url: urlAux
@@ -68,10 +78,3 @@ class MainContent extends React.Component {
 }
 
 export default MainContent;
-
-// <WeekItem weekDay={this.state.weekDay[1]} monthDay={this.state.monthDay[1]} breakfast={this.state.breakfast[1]} lunch={this.state.lunch[1]} dinner={this.state.dinner[1]} url={this.state.url[1]}/>
-  //                  <WeekItem weekDay={this.state.weekDay[2]} monthDay={this.state.monthDay[2]} breakfast={this.state.breakfast[2]} lunch={this.state.lunch[2]} dinner={this.state.dinner[2]} url={this.state.url[2]}/>
-   //                 <WeekItem weekDay={this.state.weekDay[3]} monthDay={this.state.monthDay[3]} breakfast={this.state.breakfast[3]} lunch={this.state.lunch[3]} dinner={this.state.dinner[3]} url={this.state.url[3]}/>
-    //                <WeekItem weekDay={this.state.weekDay[4]} monthDay={this.state.monthDay[4]} breakfast={this.state.breakfast[4]} lunch={this.state.lunch[4]} dinner={this.state.dinner[4]} url={this.state.url[4]}/>
-     //               <WeekItem weekDay={this.state.weekDay[5]} monthDay={this.state.monthDay[5]} breakfast={this.state.breakfast[5]} lunch={this.state.lunch[5]} dinner={this.state.dinner[5]} url={this.state.url[5]}/>
-      //              <WeekItem weekDay={this.state.weekDay[6]} monthDay={this.state.monthDay[6]} breakfast={this.state.breakfast[6]} lunch={this.state.lunch[6]} dinner={this.state.dinner[6]} url={this.state.url[6]}/>
