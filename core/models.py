@@ -1,5 +1,5 @@
 from django.db import models
-
+import json
 
 class User(models.Model):
     name = models.CharField(max_length=100)
@@ -11,35 +11,36 @@ class User(models.Model):
 
 class Menus(models.Model):
 
-    breakfast_choices = [('--', '--'), ('Batata Doce', 'Batata Doce'), ('Hambúrguer', 'Hambúrguer'), ('Ovo', 'Ovo'), ('Salsicha', 'Salsicha')]
-    breakfast_mingau_choices = [('--', '--'), ('Mingau de Chocolate', 'Mingau de Chocolate'), ('Mingau de Milho', 'Mingau de Milho'), ('Mingau de Morango', 'Mingau de Morango')]
-    breakfast_general_choices = [('--', '--'), ('Bolo de Chocolate', 'Bolo de Chocolate'), ('Bolo de Milho', 'Bolo de Milho'), ('Café com Leite', 'Café com Leite'), ('Iogurte', 'Iogurte'), ('Pão com Manteiga', 'Pão com Manteiga')]
+    # Based on rancho's real menu
+
+    breakfast_choices = [('-------', '-------'), ('Bolo', 'Bolo'), ('Café/Leite', 'Café/Leite'), ('Mingau', 'Mingau'), ('Pães com Manteiga', 'Pães com Manteiga'), ('Prato Quente', 'Prato Quente')]
+
+    main_choices = [('-------', '-------'), ('Almondegas ao Sugo', 'Almondegas ao Sugo'), ('Carne Assada', 'Carne Assada'), ('Carne em Cubos ao Molho Shoyu', 'Carne em Cubos ao Molho Shoyu'), ('Carne Moída com Milho', 'Carne Moída com Milho'), ('Estrogonofe de Carne', 'Estrogonofe de Carne'), ('Filé de Frango Acebolado', 'Filé de Frango Acebolado'), ('Filezinho à Parmegiana', 'Filezinho à Parmegiana'), ('Linguiça Acebolada', 'Linguiça Acebolada'), ('Lombo Assado/Molho', 'Lombo Assado/Molho'), ('Moqueca de Peixe', 'Moqueca de Peixe'), ('Peixe Frito', 'Peixe Frito'), ('Sobrecoxa Assada', 'Sobrecoxa assada'), ('Steak de Frango à Pizzaiolo', 'Steak de Frango à Pizzaiolo'), ('Torta de Frango', 'Torta de Frango')]
+    side_choices = [('-------', '-------'), ('Salada', 'Salada'),  ('Arroz/Feijão', 'Arroz/Feijão'), ('Sobremesa', 'Sobremesa'), ('Refresco', 'Refresco'), ('Batara Palha', 'Batata Palha'), ('Creme de Espinafre', 'Creme de Espinafre'), ('Creme de Milho', 'Creme de Milho'), ('Farofa Rica', 'Farofa Rica'), ('Macarrão ao Molho Branco', 'Macarrão ao Molho Branco'), ('Pirão', 'Pirão')]
 
     week_day = models.CharField(max_length=8)
     month_day = models.CharField(max_length=8)
 
-    breakfast_main = models.CharField(max_length=20, choices=breakfast_choices)
-    breakfast_1 = models.CharField(max_length=20, default="", choices=breakfast_mingau_choices)
-    breakfast_2 = models.CharField(max_length=20, default="", choices=breakfast_general_choices)
-    breakfast_3 = models.CharField(max_length=20, default="", choices=breakfast_general_choices)
-    breakfast_4 = models.CharField(max_length=20, default="", choices=breakfast_general_choices)
-    breakfast_5 = models.CharField(max_length=20, default="", choices=breakfast_general_choices)
+    breakfast_main = models.CharField(max_length=30, default="-------", choices=breakfast_choices)
+    breakfast_1 = models.CharField(max_length=30, default="-------", choices=breakfast_choices)
+    breakfast_2 = models.CharField(max_length=30, default="-------", choices=breakfast_choices)
+    breakfast_3 = models.CharField(max_length=30, default="-------", choices=breakfast_choices)
+    breakfast_4 = models.CharField(max_length=30, default="-------", choices=breakfast_choices)
+    breakfast_5 = models.CharField(max_length=30, default="-------", choices=breakfast_choices)
 
-    lunch_main = models.CharField(max_length=20)
-    lunch_1 = models.CharField(max_length=20, default="")
-    lunch_2 = models.CharField(max_length=20, default="")
-    lunch_3 = models.CharField(max_length=20, default="")
-    lunch_4 = models.CharField(max_length=20, default="")
-    lunch_5 = models.CharField(max_length=20, default="")
+    lunch_main = models.CharField(max_length=30, default="-------", choices=main_choices)
+    lunch_1 = models.CharField(max_length=30, default="-------", choices=side_choices)
+    lunch_2 = models.CharField(max_length=30, default="-------", choices=side_choices)
+    lunch_3 = models.CharField(max_length=30, default="-------", choices=side_choices)
+    lunch_4 = models.CharField(max_length=30, default="-------", choices=side_choices)
+    lunch_5 = models.CharField(max_length=30, default="-------", choices=side_choices)
 
-    dinner = models.CharField(max_length=20)
-    dinner_1 = models.CharField(max_length=20, default="")
-    dinner_2 = models.CharField(max_length=20, default="")
-    dinner_3 = models.CharField(max_length=20, default="")
-    dinner_4 = models.CharField(max_length=20, default="")
-    dinner_5 = models.CharField(max_length=20, default="")
-
-    url = models.CharField(max_length=200)
+    dinner_main = models.CharField(max_length=30, default="-------", choices=main_choices)
+    dinner_1 = models.CharField(max_length=30, default="-------", choices=side_choices)
+    dinner_2 = models.CharField(max_length=30, default="-------", choices=side_choices)
+    dinner_3 = models.CharField(max_length=30, default="-------", choices=side_choices)
+    dinner_4 = models.CharField(max_length=30, default="-------", choices=side_choices)
+    dinner_5 = models.CharField(max_length=30, default="-------", choices=side_choices)
 
     def __str__(self):
         return self.week_day
