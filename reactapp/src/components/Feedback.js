@@ -37,7 +37,7 @@ class Feedback extends React.Component {
                                 />
                             </form>
                         </div>
-                        <button type='submit' onClick={this.onFormSubmit}>Enviar</button>        
+                        <button id="small" type='submit' onClick={this.onFormSubmit}>Enviar</button>        
                     </div>
                 </Fade>
                 <Footer/>
