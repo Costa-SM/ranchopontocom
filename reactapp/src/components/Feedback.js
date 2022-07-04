@@ -3,6 +3,7 @@ import axios from 'axios';
 import HeadBar from './HeadBar';
 import NavBar from './NavBar';
 import Footer from './Footer';
+//import Button from './Button';
 import Fade from 'react-reveal/Fade';
 import './Feedback.css';
 
@@ -19,13 +20,14 @@ class Feedback extends React.Component {
     render() {
         return (
             <div className="feedback">
-                <HeadBar/>
-                <NavBar/>
+                <div className="top_div">
+                    <HeadBar/>
+                    <NavBar/>
+                </div>
                 <Fade clear>
                     <div className="feedback_container">
                         <div className="feedback_background">
-                            Feedback
-                            <form onSubmit={this.onFormSubmit}>
+                            <form className="feedback_form">
                                 <textarea
                                     id='comment'
                                     type='text'
@@ -34,7 +36,8 @@ class Feedback extends React.Component {
                                     onChange={e => this.setState({ text: e.target.value })}
                                 />
                             </form>
-                        </div>             
+                        </div>
+                        <button type='submit' onClick={this.onFormSubmit}>Enviar</button>        
                     </div>
                 </Fade>
                 <Footer/>
