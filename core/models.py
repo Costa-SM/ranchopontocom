@@ -44,3 +44,10 @@ class Menus(models.Model):
 
     def __str__(self):
         return self.week_day
+
+class Feedback(models.Model):
+    message = models.CharField(max_length=300)
+    date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.message

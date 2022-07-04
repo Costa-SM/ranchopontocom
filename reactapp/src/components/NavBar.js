@@ -16,8 +16,10 @@ class NavBar extends React.Component {
                     <Link to='/votes'>
                         <NavItem itemName="Votação Semanal"/>
                     </Link>
-                    
-                    <NavItem itemName="Feedback"/>
+
+                    <Link to='/feedbacks'>
+                        <NavItem itemName="Feedback"/>
+                    </Link>
                 </div>
                 <div className="login_section">
                     <Link to='/login'>
