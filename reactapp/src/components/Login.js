@@ -1,5 +1,4 @@
 import React from 'react';
-import SignBox from './SignBox';
 import LoginText from './LoginText';
 import './Login.css';
 import LoginBox from './LoginBox';
