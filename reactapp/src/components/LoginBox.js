@@ -2,6 +2,10 @@ import React from 'react';
 import axios from 'axios';
 import './LoginBox.css';
 import bcryptjs from 'bcryptjs';
+
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+
 class LoginBox extends React.Component {    
     
     constructor(props) {

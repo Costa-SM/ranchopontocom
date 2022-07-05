@@ -2,6 +2,10 @@ import React from 'react';
 import axios from 'axios';
 import './SignBox.css';
 import bcryptjs from 'bcryptjs';
+
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+
 class SignBox extends React.Component {    
     constructor(props) {
         super(props);

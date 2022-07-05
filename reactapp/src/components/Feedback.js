@@ -7,6 +7,9 @@ import Footer from './Footer';
 import Fade from 'react-reveal/Fade';
 import './Feedback.css';
 
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+
 class Feedback extends React.Component {
     state = {text: ''};
 
