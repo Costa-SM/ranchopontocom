@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import './SignBox.css';
 import bcryptjs from 'bcryptjs';
@@ -6,13 +6,15 @@ import bcryptjs from 'bcryptjs';
 axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
-class SignBox extends React.Component {    
-    constructor(props) {
-        super(props);
-        this.state = {name: '', email: '', password: '', text: ''};
-    }
+import { useNavigate } from "react-router-dom";
+import { connect } from 'react-redux';
+import { setUser } from '../actions';
 
-    isPresent = (email, json) => {
+const SignBox = (props) => {
+    const [state, setMyState] = useState({name: '', email: '', password: '', text: ''});
+    const navigate = useNavigate();
+
+    const isPresent = (email, json) => {
         for(let i = 0; i < json.length; i++){
             if(email === json[i].email)
                 return i;
@@ -21,67 +23,72 @@ class SignBox extends React.Component {
         return false;
     }
 
-    postData = async () => {
-       bcryptjs.hash(this.state.password, 10, (err, hash) => {
+    const postData = async () => {
+       bcryptjs.hash(state.password, 10, (err, hash) => {
             if(err) throw Error("Could not hash password.") 
 
-            axios.post('http://127.0.0.1:8000/api/users/', {id: 'a', name: this.state.name, email: this.state.email, password: hash});
+            axios.post('http://127.0.0.1:8000/api/users/', {id: 'a', name: state.name, email: state.email, password: hash});
         });
     }
 
-    onFormSubmit = async (event) => {
+    const onFormSubmit = async (event) => {
         event.preventDefault();
-        this.setState({ text: ''});
+        setMyState({ text: ''});
 
         const response = await fetch('http://127.0.0.1:8000/api/users');
         const json = await response.json();
 
-        if(this.isPresent(this.state.email, json)){
-            this.setState({ text: 'User already registered'});
+        if(isPresent(state.email, json)){
+            setMyState({ text: 'User already registered'});
             return;
         }
 
-        this.postData();
-        this.setState({ text: 'You have been registered!'});
+        postData();
+        props.setUser(state.email);
+        setMyState({ text: 'You have been registered!'});
+        navigate('/');
     }
 
-    render() {
-        return(
-            <div className='sign_box'>
-                <h1>{this.props.mainText}</h1>
-                <form onSubmit={this.onFormSubmit}>
-                    <div className='forms'>
-                        <input
-                            id='name'
-                            type='text'
-                            placeholder='Nome'
-                            value={this.state.name}
-                            onChange={e => this.setState({ name: e.target.value })}
-                        />
+    
+    return(
+        <div className='sign_box'>
+            <h1>{props.mainText}</h1>
+            <form onSubmit={onFormSubmit}>
+                <div className='forms'>
+                    <input
+                        id='name'
+                        type='text'
+                        placeholder='Nome'
+                        value={state.name || ''}
+                        onChange={e => setMyState({ name: e.target.value, email: state.email, password: state.password, text: '' })}
+                    />
 
-                        <input
-                            id='email'
-                            type='text'
-                            placeholder='Email'
-                            value={this.state.email}
-                            onChange={e => this.setState({ email: e.target.value })}
-                        />
+                    <input
+                        id='email'
+                        type='text'
+                        placeholder='Email'
+                        value={state.email || ''}
+                        onChange={e => setMyState({ name: state.name, email: e.target.value, password: state.password, text: '' })}
+                    />
 
-                        <input
-                            id='password'
-                            type='password'
-                            placeholder='Senha'
-                            onChange={e => this.setState({ password: e.target.value })}
-                        />
-                        <button type='submit'>
-                            {this.props.mainText}
-                        </button>
-                    </div>
-                </form>
-                <p>{this.state.text}</p>
-            </div>
-        );
-    }
+                    <input
+                        id='password'
+                        type='password'
+                        placeholder='Senha'
+                        onChange={e => setMyState({ name: state.name, email: state.email, password: e.target.value, text: '' })}
+                    />
+                    <button type='submit'>
+                        {props.mainText}
+                    </button>
+                </div>
+            </form>
+            <p>{state.text}</p>
+        </div>
+    );
 }
 
-export default SignBox;
+const mapStateToProps = (state) => {
+    return { currentUser: state.currentUser};
+};
+
+export default connect(mapStateToProps, { setUser })(SignBox);

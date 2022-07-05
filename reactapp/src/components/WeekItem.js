@@ -12,6 +12,7 @@ class WeekItem extends React.Component {
         const Item = styled.div`
         /* background-color is value of props.color */
         background-color: white;
+        cursor: pointer;
         color: white;
         font-size: 1.5em;
         padding: 10px;
