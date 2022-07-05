@@ -2,9 +2,40 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import NavItem from './NavItem';
 import './NavBar.css';
+import { connect } from 'react-redux';
+import { setUser } from '../actions';
 
 class NavBar extends React.Component {
+    logout = () => {
+        this.props.setUser(null);
+        console.log(this.props.currentUser);
+    }
+
+    chooseMenuOptions = () => {
+        console.log(this.props.currentUser);
+        if (this.props.currentUser == null) {
+            return (
+                <React.Fragment>
+                    <Link to='/login'>
+                        <NavItem itemName="Entrar"/>
+                    </Link>
+                    <Link to='/signup'>
+                        <NavItem itemName="Cadastrar"/>
+                    </Link>
+                </React.Fragment>
+            );
+        }
+        return (
+            <React.Fragment>
+                <div onClick={this.logout}>
+                    <NavItem itemName="Sair"/>
+                </div>
+            </React.Fragment>
+        );        
+    }    
+
     render() {
+        console.log(this.props.currentUser);
         return (
             <div className="nav_bar">
                 <div className="additional_element"></div>
@@ -22,16 +53,15 @@ class NavBar extends React.Component {
                     </Link>
                 </div>
                 <div className="login_section">
-                    <Link to='/login'>
-                        <NavItem itemName="Entrar"/>
-                    </Link>
-                    <Link to='/signup'>
-                        <NavItem itemName="Cadastrar"/>
-                    </Link>
+                    {this.chooseMenuOptions()}
                 </div>
             </div>
         );
     }
 }
 
-export default NavBar;
+const mapStateToProps = (state) => {
+    return { currentUser: state.currentUser};
+};
+
+export default connect(mapStateToProps, { setUser })(NavBar);
