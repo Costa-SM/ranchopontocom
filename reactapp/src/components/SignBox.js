@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './SignBox.css';
 import bcryptjs from 'bcryptjs';
-
-axios.defaults.xsrfCookieName = 'csrftoken'
-axios.defaults.xsrfHeaderName = 'X-CSRFToken'
-
 import { useNavigate } from "react-router-dom";
 import { connect } from 'react-redux';
 import { setUser } from '../actions';
+
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
 const SignBox = (props) => {
     const [state, setMyState] = useState({name: '', email: '', password: '', text: ''});
