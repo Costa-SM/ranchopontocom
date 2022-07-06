@@ -64,7 +64,7 @@ MIDDLEWARE = [
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000', "https://ranchopontocom.herokuapp.com/", "http://ranchopontocom.herokuapp.com/", "https://ranchopontocom.herokuapp.com", "http://ranchopontocom.herokuapp.com"
+    'http://localhost:3000', "https://ranchopontocom.herokuapp.com", "http://ranchopontocom.herokuapp.com"
 ]
 
 ROOT_URLCONF = 'ranchopontocom.urls'
