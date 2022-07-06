@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/static/css/main.f5ade05f.css",
+    "main.js": "/static/js/main.250f854a.js",
+    "static/media/nuggets.jpg": "/static/media/nuggets.0c3dc688c6d9c976f7c7.jpg",
+    "static/media/moqueca.jpg": "/static/media/moqueca.ebb34aa0b78573ef48a4.jpg",
+    "index.html": "/index.html",
+    "main.f5ade05f.css.map": "/static/css/main.f5ade05f.css.map",
+    "main.250f854a.js.map": "/static/js/main.250f854a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f5ade05f.css",
+    "static/js/main.250f854a.js"
+  ]
+}
