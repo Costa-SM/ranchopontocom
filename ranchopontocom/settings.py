@@ -64,7 +64,7 @@ MIDDLEWARE = [
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000',
+    'http://localhost:3000', "https://ranchopontocom.herokuapp.com/", "http://ranchopontocom.herokuapp.com/", "https://ranchopontocom.herokuapp.com", "http://ranchopontocom.herokuapp.com"
 ]
 
 ROOT_URLCONF = 'ranchopontocom.urls'
@@ -136,6 +136,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
+
+
+
 
 import django_heroku
 
