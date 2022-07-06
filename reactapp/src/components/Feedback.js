@@ -17,7 +17,7 @@ class Feedback extends React.Component {
         event.preventDefault();
         this.setState({ text: ''});
 
-        axios.post('http://127.0.0.1:8000/api/feedbacks/', {message: this.state.text});
+        axios.post('https://ranchopontocom.herokuapp.com/api/feedbacks/', {message: this.state.text});
     }
 
     render() {

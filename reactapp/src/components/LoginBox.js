@@ -40,7 +40,7 @@ const LoginBox = (props) => {
         setMyState({email: '', password: '', outline: 'solid 1px gray', text: '\xa0'});
     
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/users');
+            const response = await fetch('https://ranchopontocom.herokuapp.com/api/users');
             const json = await response.json();
             
             const validCredentials = await validate(state.email, state.password, json);

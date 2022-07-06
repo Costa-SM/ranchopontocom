@@ -18,7 +18,7 @@ class MainContent extends React.Component {
     fetchData = async () => {
 
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/menus');
+            const response = await fetch('https://ranchopontocom.herokuapp.com/api/menus');
             const json = await response.json();
             
             let weekDayAux = [];
