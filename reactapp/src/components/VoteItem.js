@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
-import { connect } from 'react-redux';
 import './VoteItem.css';
 
 class VoteItem extends React.Component {
-    state = { active: false, validUser: false };
+    state = { active: false };
 
     changeState = (state) => {
         if (!this.state.active === state) {
@@ -13,34 +12,13 @@ class VoteItem extends React.Component {
         }
     }
 
-    fetchUsers = async () => {
-        try {
-            const response = await fetch('http://127.0.0.1:8000/api/vote');
-            const json = await response.json();
-            return json.vote_users.users;
+    onVoteClick = async () => {
+        if (this.props.checkVoter()) {
+            await this.props.addUser();
+            await this.props.increaseVote(this.props.idV);
+            await this.props.postData();
         }
-        catch (e) {
-            console.log(e);
-        }
-    }
-
-    onVoteClick = () => {
-        if (this.state.validUser) this.props.postUser(this.props.id);
-    }
-
-    checkValidVoter = async () => {
-        if (this.props.currentUser === null) { 
-            this.setState({ validUser: false });
-        };
-        const userArray = await this.fetchUsers();
-        for (let i = 0; i < userArray.length; i++) {
-            if (this.props.currentUser === userArray[i]) {
-                this.setState({ validUser: false });
-            }
-        }
-        this.setState({ validUser: true });
-    }
-    
+    }    
 
     render() {
         const Item = styled.div`
@@ -82,9 +60,9 @@ class VoteItem extends React.Component {
         }`;
 
         return (
-            <Item url={this.props.itemUrl} onMouseEnter={() => this.changeState(true)} onMouseLeave={() => this.changeState(false)} validUser={this.checkValidVoter}>
+            <Item url={this.props.itemUrl} onMouseEnter={() => this.changeState(true)} onMouseLeave={() => this.changeState(false)} validUser={this.props.checkVoter}>
                 <div className='item_name'>{this.props.itemName}</div>
-                <VoteButton validUser={this.checkValidVoter} onClick={this.onVoteClick}>
+                <VoteButton validUser={this.props.checkVoter} onClick={this.onVoteClick}>
                     <Fade top collapse when={this.state.active}>
                         Votar
                     </Fade>
@@ -95,8 +73,4 @@ class VoteItem extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return { currentUser: state.currentUser};
-};
-
-export default connect(mapStateToProps)(VoteItem);
+export default VoteItem;

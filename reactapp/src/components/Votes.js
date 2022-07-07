@@ -13,6 +13,31 @@ class Votes extends React.Component {
         super(props);
         this.state = {item1Name: '', item2Name: '', url1: '', url2: '', vote1Quantity: null, vote2Quantity: null, voteUsers: [], id: null};
     }
+
+    checkValidVoter = () => {
+        if (this.props.currentUser === null) { 
+            return false
+        };
+        for (let i = 0; i < this.state.voteUsers.length; i++) {
+            if (this.props.currentUser === this.state.voteUsers[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    increaseVotesQuantity = (idV) => {
+        if (idV === 1) {
+            this.setState({ vote1Quantity: this.state.vote1Quantity + 1 })
+        }
+        else {
+            this.setState({ vote2Quantity: this.state.vote2Quantity + 1 })
+        }
+    }
+
+    addUserThatHasVoted = () => {
+        this.setState({ voteUsers: [...this.state.voteUsers, this.props.currentUser] });
+    }
     
     fetchData = async () => {
         try {
@@ -35,27 +60,20 @@ class Votes extends React.Component {
         }
     }
 
-    postData = async (id) => {
+    postData = async () => {
         const data = {
             item1_name: this.state.item1Name,
             item2_name: this.state.item2Name,
             url1: this.state.url1,
             url2: this.state.url2,
-            vote_quantity_1: this.state.vote1Quantity + id === 1 ? 1 : 0,
-            vote_quantity_2: this.state.vote2Quantity + id === 2 ? 1 : 0,
-            vote_users: { users: [...this.state.voteUsers, this.props.currentUser] },
+            vote_quantity_1: this.state.vote1Quantity,
+            vote_quantity_2: this.state.vote2Quantity,
+            vote_users: { users: this.state.voteUsers },
             id: this.state.id
         };
 
-        this.setState({ 
-            voteUsers: [...this.state.voteUsers, this.props.currentUser],
-            vote1Quantity: this.state.vote1Quantity + id === 1 ? 1 : 0,
-            vote2Quantity: this.state.vote2Quantity + id === 2 ? 1 : 0
-        });
-
         try {
             await axios.put(`http://127.0.0.1:8000/api/vote/${this.state.id}/`, data);
-            await this.fetchData();
         }
         catch(e) {
             console.log(e);
@@ -72,8 +90,8 @@ class Votes extends React.Component {
                 <HeadBar/>
                 <NavBar/>
                 <Fade clear>
-                    <VoteItem postUser={this.postData} voteQuantity={this.state.vote1Quantity} itemUrl={this.state.url1} itemName={this.state.item1Name} id={1}/>
-                    <VoteItem postUser={this.postData} voteQuantity={this.state.vote2Quantity} itemUrl={this.state.url2} itemName={this.state.item2Name} id={2}/>
+                    <VoteItem checkVoter={this.checkValidVoter} increaseVote={this.increaseVotesQuantity} addUser={this.addUserThatHasVoted} voteQuantity={this.state.vote1Quantity} itemUrl={this.state.url1} itemName={this.state.item1Name} idV={1} postData={this.postData}/>
+                    <VoteItem checkVoter={this.checkValidVoter} increaseVote={this.increaseVotesQuantity} addUser={this.addUserThatHasVoted} voteQuantity={this.state.vote2Quantity} itemUrl={this.state.url2} itemName={this.state.item2Name} idV={2} postData={this.postData}/>
                 </Fade>
                 <Footer/>
             </div>
