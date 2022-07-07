@@ -21,4 +21,4 @@ class FeedbackSerializer(serializers.ModelSerializer):
 class VoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vote
-        fields = ('item_name', 'url', 'vote_quantity', 'vote_users')
+        fields = ('id', 'item1_name', 'url1', 'item2_name', 'url2', 'vote_quantity_1', 'vote_quantity_2', 'vote_users')

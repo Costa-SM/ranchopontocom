@@ -8,11 +8,9 @@ import { setUser } from '../actions';
 class NavBar extends React.Component {
     logout = () => {
         this.props.setUser(null);
-        console.log(this.props.currentUser);
     }
 
     chooseMenuOptions = () => {
-        console.log(this.props.currentUser);
         if (this.props.currentUser == null) {
             return (
                 <React.Fragment>
@@ -35,7 +33,6 @@ class NavBar extends React.Component {
     }    
 
     render() {
-        console.log(this.props.currentUser);
         return (
             <div className="nav_bar">
                 <div className="additional_element"></div>
@@ -44,7 +41,7 @@ class NavBar extends React.Component {
                         <NavItem itemName="Cardápio Semanal"/>
                     </Link>
 
-                    <Link to='/votes'>
+                    <Link to='/vote'>
                         <NavItem itemName="Votação Semanal"/>
                     </Link>
 
