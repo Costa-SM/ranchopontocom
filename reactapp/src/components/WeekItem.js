@@ -68,22 +68,22 @@ class WeekItem extends React.Component {
                     </div>
                 </Item>
                 <Fade clear collapse when={this.state.active}>
-                <div className="wrapper" id="dropdown">
-                    <div className="row-drop">
-                        <div className="column-drop">
-                            <div className="title"> Café da manhã </div>
-                            {this.renderMealInfo('breakfast')}
-                        </div>
-                        <div className="column-drop">
-                            <div className="title"> Almoço </div>
-                            {this.renderMealInfo('lunch')}
-                        </div>
-                        <div className="column-drop">
-                            <div className="title"> Jantar </div>
-                            {this.renderMealInfo('dinner')}
+                    <div className="wrapper" id="dropdown">
+                        <div className="row-drop">
+                            <div className="column-drop">
+                                <div className="title"> Café da manhã </div>
+                                {this.renderMealInfo('breakfast')}
+                            </div>
+                            <div className="column-drop">
+                                <div className="title"> Almoço </div>
+                                {this.renderMealInfo('lunch')}
+                            </div>
+                            <div className="column-drop">
+                                <div className="title"> Jantar </div>
+                                {this.renderMealInfo('dinner')}
+                            </div>
                         </div>
                     </div>
-                </div>
                 </Fade>            
             </React.Fragment>
         );
