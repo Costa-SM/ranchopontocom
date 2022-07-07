@@ -5,3 +5,21 @@
 .month_day {
     margin-right: 20px;
 }
+
+#dropdown {
+    background-color: white;
+    color: black;
+    height: 400px;
+}
+
+.row-drop {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.column-drop {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}

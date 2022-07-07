@@ -7,18 +7,28 @@ class WeekItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = { active: false };
-
-        const itemSel = document.getElementById(`${this.props.item}`);
-
-        // itemSel.addEventListener('click', () => {
-        //     console.log('hey');
-        // });
-
     }
 
     setActive = () => {
-        this.props.dropMenu(this.props.item);
         this.setState({ active: !this.state.active });
+    }
+
+    renderMealInfo = (meal) => {
+        if (meal === 'breakfast') {
+            return this.props.breakfast.map(item => {
+                return item === '-------' ? undefined : <div className="text">{item}</div>
+            });
+        }
+        else if (meal === 'lunch') {
+            return this.props.lunch.map(item => {
+                return item === '-------' ? undefined : <div className="text">{item}</div>
+            })
+        }
+        else {
+            return this.props.dinner.map(item => {
+                return item === '-------' ? undefined : <div className="text">{item}</div>
+            })
+        }
     }
 
     render() {
@@ -41,40 +51,40 @@ class WeekItem extends React.Component {
         background-size: cover;
         margin-top: 2px;
 
-        Item:hover{
+        &:hover{
             transition-duration: 0.2s;
             filter: brightness(80%);
         }
         `;
-
-        const Dropdown = styled.div`
-        /* display: ${() => {
-            if (this.state.active) {
-                return 'block';
-            }
-            return 'none';
-        }}; */
-        z-index: 10;
-        height: 300px;
-        background-color: blue;
-        transition: 2s ease-in-out;
-        opacity: ${({ isOpen }) => (isOpen ? '1' : '0')};
-        top: ${( isOpen ) => (isOpen ? '0' : '-100%')};
-        `;
     
         return (
             <React.Fragment>
-                <Item url={this.props.url} onClick={this.setActive} id={this.props.item}>
+                <Item url={this.props.url} onClick={this.setActive}>
                     <div className="week_day">
                         {this.props.weekDay}
                     </div>
                     <div className="month_day">
                         {this.props.monthDay}
                     </div>
-                </Item>                
-                <Dropdown isOpen={this.state.active}>
-                    Hey
-                </Dropdown>
+                </Item>
+                <Fade clear collapse when={this.state.active}>
+                <div className="wrapper" id="dropdown">
+                    <div className="row-drop">
+                        <div className="column-drop">
+                            <div className="title"> Café da manhã </div>
+                            {this.renderMealInfo('breakfast')}
+                        </div>
+                        <div className="column-drop">
+                            <div className="title"> Almoço </div>
+                            {this.renderMealInfo('lunch')}
+                        </div>
+                        <div className="column-drop">
+                            <div className="title"> Jantar </div>
+                            {this.renderMealInfo('dinner')}
+                        </div>
+                    </div>
+                </div>
+                </Fade>            
             </React.Fragment>
         );
     }
