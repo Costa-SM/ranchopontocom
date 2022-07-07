@@ -11,16 +11,6 @@ h1 {
     margin: 20px 0;
 }
 
-.forms {
-    outline: none;
-    margin-top: 50px;
-    height: 260px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-}
-
 input {
     height: 16px;
     width: 276px;
@@ -31,11 +21,7 @@ input {
     font-size: 19px;
     color: rgba(0,0,0,0.9);
     transition: all ease 0.3s;
-}
-
-input:focus {
-    outline: none !important;
-    box-shadow: 0 0 0 1px #0a66c2;
+    outline: none;
 }
 
 button {

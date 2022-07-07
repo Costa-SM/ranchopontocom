@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Menus, Feedback
+from .models import User, Menus, Feedback, Vote
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -17,3 +17,8 @@ class FeedbackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Feedback
         fields = ('id', 'message', 'date')
+
+class VoteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Vote
+        fields = ('id', 'item1_name', 'url1', 'item2_name', 'url2', 'vote_quantity_1', 'vote_quantity_2', 'vote_users')

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import './LoginBox.css';
 import bcryptjs from 'bcryptjs';
+import Fade from 'react-reveal/Fade';
 import { useNavigate } from "react-router-dom";
 import { connect } from 'react-redux';
 import { setUser } from '../actions';
 
 const LoginBox = (props) => {
-    const [state, setMyState] = useState({email: '', password: '', outline: 'solid 1px gray', text: '\xa0'});
+    const [state, setMyState] = useState({email: '', password: '', boxShadow: 'none', valid: true});
     const navigate = useNavigate();
 
     const isPresent = (email, json) => {
@@ -20,12 +21,9 @@ const LoginBox = (props) => {
     
     const validate = async (email, password, json) => {
         let jsonIndex = isPresent(email, json);
-        
-        console.log()
     
         if(jsonIndex){
             const response = await bcryptjs.compare(password, json[jsonIndex].password);
-            console.log(response);
             return response;
         }
         
@@ -33,7 +31,7 @@ const LoginBox = (props) => {
     }
     
     const fetchData = async () => {
-        setMyState({email: '', password: '', outline: 'solid 1px gray', text: '\xa0'});
+        setMyState({email: '', password: '', boxShadow: 'none', valid: true});
     
         try {
             const response = await fetch('http://127.0.0.1:8000/api/users');
@@ -43,11 +41,11 @@ const LoginBox = (props) => {
     
             if (validCredentials) {
                 props.setUser(state.email);
-                setMyState({ text: 'Logging in...' });
+                setMyState({ text: 'Entrando...' });
                 navigate('/');
             }
             else {
-                setMyState({email: '', password: '', outline: 'solid 1px red', text: '\xa0'});
+                setMyState({email: '', password: '', boxShadow: '0 0 0 1px red', valid: false});
             }
         }
         catch(e) {
@@ -70,22 +68,36 @@ const LoginBox = (props) => {
                         type='text'
                         placeholder='Email'
                         value={state.email || ''}
-                        onChange={e => setMyState({ email: e.target.value, password: '', outline: 'solid 1px gray', text: '\xa0'})}
-                        style={{outline: state.outline}}
-                    />                       
+                        onChange={e => setMyState({ email: e.target.value, password: '', boxShadow: 'none', valid: true})}
+                        style={{boxShadow: state.boxShadow}}
+                    />
+                    
+                    <div>
+                        <Fade bottom collapse when={!state.valid}>
+                            <div className="error">
+                                Credenciais inválidas
+                            </div>
+                        </Fade>
+                    </div>                    
 
                     <input
                         id='password'
                         type='password'
                         placeholder='Senha'
-                        onChange={e => setMyState({ email: state.email, password: e.target.value, outline: 'solid 1px gray', text: '\xa0' })}
-                        style={{outline: state.outline}}
+                        onChange={e => setMyState({ email: state.email, password: e.target.value, boxShadow: 'none', valid: true })}
+                        style={{boxShadow: state.boxShadow}}
                     />
+                    <div>
+                        <Fade bottom collapse when={!state.valid}>
+                            <div className="error">
+                                Credenciais inválidas
+                            </div>
+                        </Fade>
+                    </div>
 
                     <button type='submit'>
                         {props.mainText}
                     </button>
-                    <small style={{color: 'gray'}}>{state.text}</small>
                 </div>
             </form>
         </div>

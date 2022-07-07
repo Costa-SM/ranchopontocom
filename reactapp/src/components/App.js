@@ -15,7 +15,7 @@ class App extends React.Component {
                         <Route path='/' exact element={<MenuPage />}/>
                         <Route path='/login' exact element={<Login />}/>
                         <Route path='/signup' exact element={<SignUp />}/>
-                        <Route path='/votes' exact element={<Votes />}/>
+                        <Route path='/vote' exact element={<Votes />}/>
                         <Route path='/feedbacks' exact element={<Feedback />}/>
                     </Routes>
                 </BrowserRouter>

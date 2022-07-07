@@ -1,5 +1,4 @@
 from django.db import models
-import json
 
 class User(models.Model):
     name = models.CharField(max_length=100)
@@ -51,3 +50,15 @@ class Feedback(models.Model):
 
     def __str__(self):
         return self.message
+
+class Vote(models.Model):
+    item1_name = models.CharField(max_length=50)
+    item2_name = models.CharField(max_length=50)
+    url1 = models.CharField(max_length=200)
+    url2 = models.CharField(max_length=200)
+    vote_quantity_1 = models.IntegerField()
+    vote_quantity_2 = models.IntegerField()
+    vote_users = models.JSONField(default={"users": []})
+
+    def __str__(self):
+        return (self.item1_name + ' vs. ' + self.item2_name)

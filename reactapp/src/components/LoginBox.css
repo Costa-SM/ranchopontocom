@@ -3,8 +3,7 @@
     box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
     padding: 24px;
     width: 304px;
-    height: 370px;
-    
+    height: 370px;    
 }
 
 h1 {
@@ -18,8 +17,7 @@ h1 {
     height: 260px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-
+    justify-content: space-evenly;
 }
 
 input {
@@ -32,6 +30,7 @@ input {
     font-size: 19px;
     color: rgba(0,0,0,0.9);
     transition: all ease 0.3s;
+    outline: none;
 }
 
 button {
@@ -51,4 +50,9 @@ button {
 button:hover {
     background-color: black;
     cursor: pointer;
+}
+
+.error {
+    color: red;
+    font-size: small;
 }
