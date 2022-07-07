@@ -22,6 +22,7 @@ router = routers.DefaultRouter()
 router.register('users', views.UserView, 'user')
 router.register('menus', views.MenusView, 'menus')
 router.register('feedbacks', views.FeedbackView, 'feedback')
+router.register('vote', views.VoteView, 'vote')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

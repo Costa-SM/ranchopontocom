@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from .serializers import UserSerializer, MenusSerializer, FeedbackSerializer
+from .serializers import UserSerializer, MenusSerializer, FeedbackSerializer, VoteSerializer
 from rest_framework import viewsets
-from .models import User, Menus, Feedback
+from .models import User, Menus, Vote, Feedback
 
 # Create your views here.
 class UserView(viewsets.ModelViewSet):
@@ -15,3 +15,7 @@ class MenusView(viewsets.ModelViewSet):
 class FeedbackView(viewsets.ModelViewSet):
     serializer_class = FeedbackSerializer
     queryset = Feedback.objects.all()
+
+class VoteView(viewsets.ModelViewSet):
+    serializer_class = VoteSerializer
+    queryset = Vote.objects.all()

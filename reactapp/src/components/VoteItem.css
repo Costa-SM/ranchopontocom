@@ -1,45 +1,9 @@
 .vote_item {
-    background-color: white;
-    color: rgb(112, 112, 112);
-    padding: 10px;
-    margin: auto;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgb(0 0 0 / 15%);
-    width: 65vw;
-    max-width: 880px;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    margin-left: 10px;
 }
 
-.vote_item:hover{
-    transition-duration: 0.2s;
-    background-color: lightgray;
-}
-
-.vote_total {
-    
-}
-
-.item_image{
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 400px;
-    height: auto;
-}
-
-.item_image img{
-    width: 100%;
-    height: auto;
-    border-radius: 20px;
-}
-
-
-.item_name {
-    font-size: xx-large;
-    margin-right: 20px;
+.item_name{
+    font-size: 2.5em;
+    font-weight: bolder;
+    padding: 50px;
 }
