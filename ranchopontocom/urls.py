@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from core import views
-from django.shortcuts import render
 
 router = routers.DefaultRouter()
 router.register('users', views.UserView, 'user')
@@ -25,7 +24,7 @@ router.register('menus', views.MenusView, 'menus')
 router.register('feedbacks', views.FeedbackView, 'feedback')
 
 urlpatterns = [
-    path('', render('index.js')),
+    path('', include('core.urls')),
     path('admin/', admin.site.urls),
     path('api/', include(router.urls))
 ]
