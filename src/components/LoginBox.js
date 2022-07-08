@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import './LoginBox.css';
 import bcryptjs from 'bcryptjs';
+import axios from 'axios'
+import { useNavigate } from "react-router-dom";
+import { connect } from 'react-redux';
+import { setUser } from '../actions';
 
 axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
-import { useNavigate } from "react-router-dom";
-import { connect } from 'react-redux';
-import { setUser } from '../actions';
 
 const LoginBox = (props) => {
     const [state, setMyState] = useState({email: '', password: '', outline: 'solid 1px gray', text: '\xa0'});
