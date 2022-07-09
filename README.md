@@ -33,3 +33,11 @@ In certain pages, the frontend communicates with the backend in order to show a 
 website's source code, since this would be highly impractical in a real-world deployment scenario. The dynamic images were achieved by using references to images provided by the backend, which are stored in the database, which the administrator can control while the website is live.
 
 Lastly, in order to enforce security of the accounts, password hashes were also implemented, using the BCrypt, which is a JavaScript Library that has extensive features, which include functions designed to hash and compare passwords.
+
+## URLs of the images that are in the website
+
+Pizza -> https://s.calendarr.com/upload/datas/pi/zz/pizza_c.jpg?auto_optimize=low&width=640
+
+Ice cream -> https://img.itdg.com.br/tdg/images/blog/uploads/2022/03/sorvete.jpg
+
+The others are in the folder reactapp/urls.json
