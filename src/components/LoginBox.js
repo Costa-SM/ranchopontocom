@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
 import './LoginBox.css';
 import bcryptjs from 'bcryptjs';
+<<<<<<< HEAD:reactapp/src/components/LoginBox.js
 import Fade from 'react-reveal/Fade';
+=======
+import axios from 'axios'
+>>>>>>> f0d380df5611269200066e7330da4cbd85d2f5c2:src/components/LoginBox.js
 import { useNavigate } from "react-router-dom";
 import { connect } from 'react-redux';
 import { setUser } from '../actions';
+
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+
 
 const LoginBox = (props) => {
     const [state, setMyState] = useState({email: '', password: '', boxShadow: 'none', valid: true});
@@ -34,7 +42,7 @@ const LoginBox = (props) => {
         setMyState({email: '', password: '', boxShadow: 'none', valid: true});
     
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/users');
+            const response = await fetch('https://ranchopontocom.herokuapp.com/api/users');
             const json = await response.json();
             
             const validCredentials = await validate(state.email, state.password, json);

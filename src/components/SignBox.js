@@ -6,6 +6,10 @@ import { useNavigate } from "react-router-dom";
 import { connect } from 'react-redux';
 import { setUser } from '../actions';
 
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+
+
 const SignBox = (props) => {
     const [state, setMyState] = useState({name: '', email: '', password: '', text: ''});
     const navigate = useNavigate();
@@ -23,7 +27,7 @@ const SignBox = (props) => {
        bcryptjs.hash(state.password, 10, (err, hash) => {
             if(err) throw Error("Could not hash password.") 
 
-            axios.post('http://127.0.0.1:8000/api/users/', {id: 'a', name: state.name, email: state.email, password: hash});
+            axios.post('https://ranchopontocom.herokuapp.com/api/users/', {id: 'a', name: state.name, email: state.email, password: hash});
         });
     }
 

@@ -25,11 +25,17 @@ SECRET_KEY = 'q%+r)gpu&z1)-8q-lf3(w2%ds(j6d%3@)#*$&vtqi8t1umic9l'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
-ALLOWED_HOSTS = ['*']
-
+ALLOWED_HOSTS = ['*'] # Set to open for all access
 
 # Application definition
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'build/static')
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -62,10 +68,6 @@ MIDDLEWARE = [
 ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
-
-CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000',
-]
 
 ROOT_URLCONF = 'ranchopontocom.urls'
 
